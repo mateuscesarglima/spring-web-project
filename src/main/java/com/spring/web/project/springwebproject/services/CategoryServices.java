@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.spring.web.project.springwebproject.entities.Category;
 import com.spring.web.project.springwebproject.repositories.CategoryRepository;
+import com.spring.web.project.springwebproject.services.exceptions.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class CategoryServices {
     public Category findById(Long id) {
 
         Optional<Category> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 
-        return obj.get();
     }
 }

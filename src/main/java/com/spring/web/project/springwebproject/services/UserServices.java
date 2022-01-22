@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.spring.web.project.springwebproject.entities.User;
 import com.spring.web.project.springwebproject.repositories.UserRepository;
+import com.spring.web.project.springwebproject.services.exceptions.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserServices{
 
     public User findById(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
 }

@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserResource {
 
     @Autowired
-    private UserServices service;
+    private UserServices userServices;
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
 
-        List<User> list = service.findAll();
+        List<User> list = userServices.findAll();
 
         return ResponseEntity.ok().body(list);
         
@@ -31,7 +31,7 @@ public class UserResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
 
-        User obj = service.findById(id);
+        User obj = userServices.findById(id);
         
         return ResponseEntity.ok().body(obj);   
 
