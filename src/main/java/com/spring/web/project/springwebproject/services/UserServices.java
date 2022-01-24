@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServices{
+public class UserServices {
 
     @Autowired
     private UserRepository repository;
@@ -20,9 +20,13 @@ public class UserServices{
         return repository.findAll();
     }
 
-    public User findById(Long id){
+    public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public User insert(User obj) {
+        return repository.save(obj);
     }
 
 }

@@ -18,7 +18,7 @@ import com.spring.web.project.springwebproject.entities.enumerated.OrderStatus;
 
 @Entity
 @Table(name = "tb_order")
-public class Order implements Serializable{
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,5 +101,4 @@ public class Order implements Serializable{
         return true;
     }
 
-    
 }
