@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/orders")
+@RequestMapping(value = "/orders")
 public class OrderResource {
 
     @Autowired
@@ -35,7 +35,7 @@ public class OrderResource {
 
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Order> findById(@PathVariable Long id) {
 
         ResponseEntity<Order> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);

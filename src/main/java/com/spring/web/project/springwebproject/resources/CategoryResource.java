@@ -35,18 +35,19 @@ public class CategoryResource {
 
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Category> findById(@PathVariable(name = "id") Long id) {
-        
+
         ResponseEntity<Category> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         Category category = categoryServices.findById(id);
 
-        if(category != null){
+        if (category != null) {
             response = new ResponseEntity<>(category, HttpStatus.OK);
         }
 
         return response;
 
     }
+
 }

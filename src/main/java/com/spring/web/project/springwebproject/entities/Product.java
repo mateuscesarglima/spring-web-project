@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_product")
@@ -18,23 +20,25 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 
     private String description;
 
     private Double price;
-    
-    private String imgUrl;
 
-    @Transient
+    private String imgUrl;
+    // (1 - nome da tabela, 2 -> nome da chave estrangeira referente a tabela de
+    // produto, 3 -> nome da chave estrangeira referente a tabela de categoria)
+    @ManyToMany
+    @JoinTable(name = "db_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public Product(){
+    public Product() {
     }
 
-    public Product(Integer id, String name, String description, Double price, String imgUrl) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -42,11 +46,11 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,7 +85,7 @@ public class Product implements Serializable {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
-    
+
     public Set<Category> getCategories() {
         return categories;
     }
@@ -111,6 +115,4 @@ public class Product implements Serializable {
         return true;
     }
 
-    
-    
 }
