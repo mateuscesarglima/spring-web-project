@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderResource {
 
     @Autowired
-    private OrderServices orderServices;
+    private OrderServices service;
 
     @GetMapping
     public ResponseEntity<List<Order>> findAll() {
 
         ResponseEntity<List<Order>> response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        List<Order> list = orderServices.findAll();
+        List<Order> list = service.findAll();
 
         if (!list.isEmpty()) {
             response = ResponseEntity.ok().body(list);
@@ -40,7 +40,7 @@ public class OrderResource {
 
         ResponseEntity<Order> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        Order order = orderServices.findById(id);
+        Order order = service.findById(id);
 
         if (order != null) {
             response = ResponseEntity.ok().body(order);

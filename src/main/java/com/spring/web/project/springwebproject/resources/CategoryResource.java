@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryResource {
 
     @Autowired
-    private CategoryServices categoryServices;
+    private CategoryServices service;
 
     @GetMapping
     public ResponseEntity<List<Category>> findAll() {
 
         ResponseEntity<List<Category>> response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        List<Category> list = categoryServices.findAll();
+        List<Category> list = service.findAll();
 
         if (!list.isEmpty()) {
             response = new ResponseEntity<>(list, HttpStatus.OK);
@@ -40,7 +40,7 @@ public class CategoryResource {
 
         ResponseEntity<Category> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        Category category = categoryServices.findById(id);
+        Category category = service.findById(id);
 
         if (category != null) {
             response = new ResponseEntity<>(category, HttpStatus.OK);
