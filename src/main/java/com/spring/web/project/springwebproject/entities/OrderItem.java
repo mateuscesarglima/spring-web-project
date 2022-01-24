@@ -9,11 +9,10 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.web.project.springwebproject.entities.pk.OrderItemPK;
 
-
 @Entity
 @Table(name = "tb_order_item")
-public class OrderItem implements Serializable{
-    
+public class OrderItem implements Serializable {
+
     @EmbeddedId
     private OrderItemPK id = new OrderItemPK();
 
@@ -21,7 +20,7 @@ public class OrderItem implements Serializable{
 
     private Double price;
 
-    public OrderItem(){
+    public OrderItem() {
 
     }
 
@@ -33,19 +32,19 @@ public class OrderItem implements Serializable{
     }
 
     @JsonIgnore
-    public Order getOrder(){
+    public Order getOrder() {
         return id.getOrder();
     }
 
-    public void setOrder(Order order){
+    public void setOrder(Order order) {
         id.setOrder(order);
     }
 
-    public Product getProduct(){
+    public Product getProduct() {
         return id.getProduct();
     }
 
-    public void setProduct(Product product){
+    public void setProduct(Product product) {
         id.setProduct(product);
     }
 
@@ -63,6 +62,10 @@ public class OrderItem implements Serializable{
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getSubTotal() {
+        return price * quantity;
     }
 
     @Override
@@ -89,9 +92,5 @@ public class OrderItem implements Serializable{
             return false;
         return true;
     }
-
-    
-
-    
 
 }
