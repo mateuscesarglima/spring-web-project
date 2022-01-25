@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("test")
+@Profile({"dev", "test"})
 public class TesteConfig implements CommandLineRunner {
 
     @Autowired
